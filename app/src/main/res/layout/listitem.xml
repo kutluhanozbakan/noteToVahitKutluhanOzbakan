@@ -15,17 +15,21 @@
         android:id="@+id/textViewStatus"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textColor="@color/colorAccent"
-        android:textSize="24sp" />
+        android:textColor="@color/colorRed"
+        android:textSize="24sp"
+        android:fontFamily="sans-serif-condensed-light"
+        />
 
     <TextView
         android:id="@+id/textViewTitle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textSize="24sp" />
+        android:textSize="24sp"
+        android:fontFamily="sans-serif-condensed-light"/>
 
     <TextView
         android:id="@+id/textViewDescription"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:fontFamily="sans-serif-condensed-light"/>
 </LinearLayout>
