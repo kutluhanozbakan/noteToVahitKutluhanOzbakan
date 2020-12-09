@@ -46,8 +46,9 @@ class DialogShowNote : DialogFragment() {
         buttonDone.setOnClickListener {
             dismiss()
         }
-        builder.setView(dialogLayout).
-            setMessage("Your Note")
+        builder.setView(dialogLayout).setMessage(
+            resources.getString(R.string.your_note))
+
         return builder.create()
     }
 
