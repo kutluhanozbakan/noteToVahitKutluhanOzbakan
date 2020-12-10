@@ -2,26 +2,22 @@ package ise308.ozbakan.vahikutluhan.notetovahitkutluhanzbakan
 
 import org.json.JSONException
 import org.json.JSONObject
-
+//We have defined the Json variables.
 private val JSON_TITLE = "title"
 private val JSON_DESCRIPTION = "description"
 private val JSON_IDEA = "idea"
 private val JSON_TODO = "todo"
 private val JSON_IMPORTANT = "important"
 
-
-
 class Note {
-    constructor()
-    {
-
-    }
+    //We have defined an empty constructor to pass an empty variable.
+    constructor() {}
     var title: String? = null
     var description: String? = null
     var idea: Boolean= false
     var todo: Boolean= false
     var important: Boolean= false
-
+    //We put the incoming variables in json object.
     @Throws(JSONException::class)
     constructor(jsonObject : JSONObject)
     {
@@ -32,7 +28,7 @@ class Note {
         important=jsonObject.getBoolean(JSON_IMPORTANT)
 
     }
-
+    //we converted the data to json object
     @Throws(JSONException::class)
     fun convertTOJSON(): JSONObject
     {

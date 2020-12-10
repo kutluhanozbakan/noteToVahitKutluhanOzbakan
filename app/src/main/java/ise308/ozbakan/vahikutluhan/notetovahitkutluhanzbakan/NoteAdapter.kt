@@ -8,7 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 
 class NoteAdapter(private val mainActivity: MainActivity, private val noteList: List<Note>) : RecyclerView.Adapter<NoteAdapter.ListItemHolder>()
 {
-
+    //We assign the data coming from xml to variables via class.
     inner class ListItemHolder(view: View) : RecyclerView.ViewHolder(view), View.OnClickListener
     {
         internal var title = view.findViewById<View>(R.id.textViewTitle) as TextView
@@ -20,22 +20,18 @@ class NoteAdapter(private val mainActivity: MainActivity, private val noteList: 
             view.isClickable = true
             view.setOnClickListener(this)
         }
-
+        //Clicking the button makes showNote active
         override fun onClick(view: View) {
             mainActivity.showNote(adapterPosition)
         }
     }
-
-
-
-
-
     override fun onCreateViewHolder(
         parent: ViewGroup, viewType: Int): ListItemHolder
     {
         val itemView = LayoutInflater.from(parent.context).inflate(R.layout.listitem, parent, false)
         return ListItemHolder(itemView)
     }
+    //keeps the number of incoming notes.
     override fun getItemCount(): Int
     {
         if (noteList != null) {
@@ -44,7 +40,8 @@ class NoteAdapter(private val mainActivity: MainActivity, private val noteList: 
         return -1
 
     }
-
+    //While the notes are displayed in the XML part, we have determined how they appear.
+    //For example shortening long descriptions
     override fun onBindViewHolder(holder: ListItemHolder, position: Int)
     {
         val note = noteList[position]

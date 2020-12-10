@@ -19,23 +19,27 @@ import java.lang.Exception
 
 class MainActivity : AppCompatActivity() {
 
+    //We define new array as noteList to store the notes.
     private var noteList : ArrayList<Note>? = null
+    //We define new variable to hold JSON
     private var jsonSerializer: JSONSerializer? = null
-
+    //We define a recyclerView to show notes in the screen
     private var recyclerView: RecyclerView? = null
+    //We define adapter for Note.kt
     private var adapter: NoteAdapter? = null
+    //We define a showDividers for using dividers between two notes
     private var showDividers: Boolean = false
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        //This is a floating action button to add new note
         floatingActionButton3.setOnClickListener { view ->
             val dialog = DialogNewNote()
             dialog.show(supportFragmentManager, "124")
         }
-
         jsonSerializer = JSONSerializer("Note to Vahit Kutluhan Özbakan", applicationContext)
+        //We used a try-catch construct to pull the note list from json files.
         try
         {
             noteList = jsonSerializer!!.load()
@@ -48,6 +52,7 @@ class MainActivity : AppCompatActivity() {
                     as RecyclerView
 
         adapter = NoteAdapter(this, noteList!!)
+        //we define layoutManager to show notes in linear lines
         val layoutManager = LinearLayoutManager(applicationContext)
         recyclerView!!.layoutManager = layoutManager
         recyclerView!!.itemAnimator = DefaultItemAnimator()
@@ -56,6 +61,7 @@ class MainActivity : AppCompatActivity() {
     }
     override fun onResume()
     {
+        //on resume function , program use dividers in between notes.
         super.onResume()
         val prefs = getSharedPreferences("Note to Vahit Kutluhan Özbakan", Context.MODE_PRIVATE)
         showDividers = prefs.getBoolean("dividers",true)
@@ -68,26 +74,24 @@ class MainActivity : AppCompatActivity() {
                 recyclerView!!.removeItemDecorationAt(0)
         }
     }
-
-
+    //createNewNote active the notelist to new add note.
     fun createNewNote(n: Note)
     {
         noteList!!.add(n)
         adapter!!.notifyDataSetChanged()
-
     }
-
+    //showNote function is display the notes
     fun showNote(noteToShow: Int) {
         val dialog = DialogShowNote()
         noteList?.get(noteToShow)?.let { dialog.sendNoteSelected(it) }
         dialog.show(supportFragmentManager, "")
     }
-
+    //onCreateOptionsMenu is active the settings menu
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.main_menu, menu)
         return true
     }
-
+    //onOptionsItemSelected function is after the when user open the settings
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         val id = item.itemId
         val b = when(id)
@@ -102,7 +106,7 @@ class MainActivity : AppCompatActivity() {
         }
         return b
     }
-
+    //this function is save note to json files
         private fun saveNotes()
         {
             try {

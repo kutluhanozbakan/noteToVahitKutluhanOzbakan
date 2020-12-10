@@ -8,7 +8,8 @@ import java.io.*
 import java.lang.StringBuilder
 
 class JSONSerializer(private val filename : String, private val context: Context) {
-
+    //We define a jsonArray to store informations
+    //And also we store the information in jsonArray with Writer
     @Throws(IOException::class, JSONException::class)
     fun save(noteList: List<Note>) {
         val jsonArray = JSONArray()
@@ -27,7 +28,7 @@ class JSONSerializer(private val filename : String, private val context: Context
         }
 
     }
-
+    //this function is load the current json folder and show the data.
     @Throws(IOException::class, JSONException::class)
     fun load(): ArrayList<Note> {
         val noteList = ArrayList<Note>()

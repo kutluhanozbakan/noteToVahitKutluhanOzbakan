@@ -16,11 +16,10 @@ class DialogShowNote : DialogFragment() {
     private  var note: Note? = null
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
-
+        //Data pulled using id to show data
         val builder = AlertDialog.Builder(this.activity!!)
         val inflater = activity!!.layoutInflater
         val dialogLayout = inflater.inflate(R.layout.dialog_show_note, null)
-
         val textViewtitle = dialogLayout.findViewById<TextView>(R.id.textTitle)
         val textViewDescription = dialogLayout.findViewById<TextView>(R.id.textDescription)
         val textViewIdea = dialogLayout.findViewById<TextView>(R.id.textViewIdea)
@@ -46,6 +45,7 @@ class DialogShowNote : DialogFragment() {
         buttonDone.setOnClickListener {
             dismiss()
         }
+        //We define de message to show
         builder.setView(dialogLayout).setMessage(
             resources.getString(R.string.your_note))
 
